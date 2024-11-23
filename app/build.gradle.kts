@@ -6,7 +6,9 @@ plugins {
 android {
     namespace = "com.example.serbaresep"
     compileSdk = 34
-
+    viewBinding {
+        enable = true
+    }
     defaultConfig {
         applicationId = "com.example.serbaresep"
         minSdk = 25
@@ -36,6 +38,10 @@ android {
 }
 
 dependencies {
+    implementation(platform("io.github.jan-tennert.supabase:bom:3.0.2"))
+    implementation("io.github.jan-tennert.supabase:postgrest-kt")
+    implementation("io.github.jan-tennert.supabase:auth-kt")
+    implementation("io.ktor:ktor-client-android:3.0.1")
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
