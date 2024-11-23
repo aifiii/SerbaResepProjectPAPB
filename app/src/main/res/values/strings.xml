@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SerbaResep</string>
+    <string name="supabase_url">https://exjwylkeissymjyoikya.supabase.co</string>
+    <string name="supabase_anon_key">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImV4and5bGtlaXNzeW1qeW9pa3lhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzIyNTUwNTYsImV4cCI6MjA0NzgzMTA1Nn0.Pb6Go42aTKkjvTC_aRxu9bPt7XCvolT6U7wxer5pTNA</string>
 </resources>
