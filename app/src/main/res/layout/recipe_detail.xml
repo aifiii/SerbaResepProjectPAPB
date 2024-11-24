@@ -1,0 +1,130 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFAED"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Recipe Name -->
+        <TextView
+            android:id="@+id/recipeNameTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Nama Resep"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <!-- Recipe Image -->
+        <ImageView
+            android:id="@+id/recipeImageView"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp"
+            android:scaleType="centerCrop"
+            android:background="#E0E0E0" />
+
+        <!-- Recipe Story -->
+        <TextView
+            android:id="@+id/recipeStoryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:text="Cerita singkat tentang resep ini."
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <!-- Recipe Info Header -->
+        <TextView
+            android:id="@+id/recipeInfoHeaderTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Informasi Resep"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Recipe Info Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/recipeDurationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="#F8DD91"
+                android:padding="8dp"
+                android:text="Durasi: 30 menit"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/recipeServingsTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#F8DD91"
+                android:padding="8dp"
+                android:text="Porsi: 2 orang"
+                android:textColor="#000000"
+                android:textSize="16sp" />
+        </LinearLayout>
+
+        <!-- Ingredients Header -->
+        <TextView
+            android:id="@+id/ingredientsHeaderTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Bahan Utama"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Ingredients -->
+        <TextView
+            android:id="@+id/recipeIngredientsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="#F8DD91"
+            android:padding="8sp"
+            android:text="1. Tepung\n2. Gula\n3. Telur"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <!-- Steps Header -->
+        <TextView
+            android:id="@+id/stepsHeaderTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Cara Memasak"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Steps -->
+        <TextView
+            android:id="@+id/recipeStepsTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="#F8DD91"
+            android:padding="8sp"
+            android:text="1. Campur semua bahan.\n2. Panaskan oven.\n3. Panggang hingga matang."
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</ScrollView>
