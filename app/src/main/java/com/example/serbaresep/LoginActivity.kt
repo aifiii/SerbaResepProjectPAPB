@@ -1,9 +1,12 @@
 package com.example.serbaresep
 
+
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.serbaresep.MainActivity
@@ -30,6 +33,8 @@ class LoginActivity : AppCompatActivity() {
         val passwordEditText = findViewById<EditText>(R.id.et_password_login)
         val loginButton = findViewById<Button>(R.id.btn_login)
 
+
+
         loginButton.setOnClickListener {
             val emailValue = emailEditText.text.toString()
             val passwordValue = passwordEditText.text.toString()
@@ -37,15 +42,22 @@ class LoginActivity : AppCompatActivity() {
             if (emailValue.isNotEmpty() && passwordValue.isNotEmpty()) {
                 CoroutineScope(Dispatchers.IO).launch {
                     try {
-
-                        auth.signInWith(Email){
+                        val result = auth.signInWith(Email) {
                             email = emailValue
                             password = passwordValue
                         }
-                        withContext(Dispatchers.Main) {
-                            Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-                            finish()
+
+                        if (auth.currentUserOrNull() != null) {
+                            Log.d("Login", "Login berhasil: ${auth.currentUserOrNull()}")
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(this@LoginActivity, "Login berhasil", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this@LoginActivity, HomeActivity::class.java)) // Redirect ke MainActivity
+                                finish()
+                            }
+                        } else {
+                            withContext(Dispatchers.Main) {
+                                Toast.makeText(this@LoginActivity, "Login gagal", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     } catch (e: Exception) {
                         withContext(Dispatchers.Main) {
