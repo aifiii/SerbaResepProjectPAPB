@@ -1,0 +1,117 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
+
+        <!-- Greeting -->
+        <TextView
+            android:id="@+id/tvFull_Name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hello, Eva"
+            android:textColor="#FEBF34"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Kamu mau tulis resep apa?"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+
+        <!-- Recipe Name Input -->
+        <EditText
+            android:id="@+id/etNamaMakanan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_border_orange"
+            android:layout_marginBottom="8dp"
+            android:hint="Nama Makanan" />
+
+        <!-- Servings Input -->
+        <EditText
+            android:id="@+id/etPorsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_border_orange"
+            android:layout_marginBottom="8dp"
+            android:hint="Porsi"
+            android:inputType="number" />
+
+        <!-- Cooking Duration Input -->
+        <EditText
+            android:id="@+id/etDurasiMasak"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_border_orange"
+            android:layout_marginBottom="8dp"
+            android:hint="Durasi Masak" />
+
+        <!-- Recipe Story Input -->
+        <EditText
+            android:id="@+id/etCerita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_border_orange"
+            android:layout_marginBottom="8dp"
+            android:hint="Cerita Asal Resep" />
+
+        <!-- Ingredients Input -->
+        <EditText
+            android:id="@+id/etBahanUtama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_border_orange"
+            android:layout_marginBottom="8dp"
+            android:hint="Bahan Utama (pisahkan dengan koma)" />
+
+        <!-- Steps Input -->
+        <EditText
+            android:id="@+id/etLangkahLangkah"
+            android:layout_width="match_parent"
+            android:layout_marginBottom="8dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edittext_border_orange"
+            android:hint="Langkah Langkah (pisahkan dengan koma)" />
+
+        <!-- Food Image -->
+        <ImageView
+            android:id="@+id/ivFoodImage"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@android:drawable/ic_menu_camera"
+            android:contentDescription="Food Image"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="16dp" />
+
+        <!-- Select Image Button -->
+        <Button
+            android:id="@+id/btnSelectImage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilih Gambar Makanan"
+            android:backgroundTint="#FEBF34"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="16dp" />
+
+        <!-- Save Recipe Button -->
+        <Button
+            android:id="@+id/btnSimpan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Simpan Resep"
+            android:backgroundTint="#FEBF34"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+</ScrollView>
