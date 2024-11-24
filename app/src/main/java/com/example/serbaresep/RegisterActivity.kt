@@ -6,22 +6,18 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
 import com.example.supabaseapp.supabase
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.providers.builtin.Email
+import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.JsonObject
 import kotlinx.serialization.json.buildJsonObject
 import kotlinx.serialization.json.put
-import kotlin.math.log
 
 class RegisterActivity : AppCompatActivity() {
-
-    private val auth = supabase.auth // Instance Supabase Auth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,30 +31,51 @@ class RegisterActivity : AppCompatActivity() {
         val registerButton = findViewById<Button>(R.id.btn_register)
 
         registerButton.setOnClickListener {
-            val name = nameEditText.text.toString()
-            val phone = phoneEditText.text.toString()
-            val emailValue = emailEditText.text.toString()
-            val passwordValue = passwordEditText.text.toString()
-            val confirmPassword = confirmPasswordEditText.text.toString()
+            val name = nameEditText.text.toString().trim()
+            val phone = phoneEditText.text.toString().trim()
+            val emailValue = emailEditText.text.toString().trim()
+            val passwordValue = passwordEditText.text.toString().trim()
+            val confirmPassword = confirmPasswordEditText.text.toString().trim()
 
             if (name.isNotEmpty() && phone.isNotEmpty() && emailValue.isNotEmpty() && passwordValue.isNotEmpty() && confirmPassword.isNotEmpty()) {
                 if (passwordValue == confirmPassword) {
                     CoroutineScope(Dispatchers.IO).launch {
                         try {
-
-                            val metadata: JsonObject = buildJsonObject {
-                                put("name", name)
-                                put("phone", phone)
-                            }
-
-
+                            // Sign up user
                             val result = supabase.auth.signUpWith(Email) {
                                 email = emailValue
                                 password = passwordValue
-//                                data = metadata
                             }
 
+                            val user = supabase.auth.retrieveUserForCurrentSession(updateSession = true)
 
+
+                            if (user.id != null) {
+                                val profile = buildJsonObject {
+                                    put("user_id", user.id)
+                                    put("full_name", name)
+                                    put("phone", phone)
+                                }
+                                try {
+                                    val profileResult = supabase.from("profiles").insert(
+                                        profile
+                                    )
+
+                                }catch (e:Exception){
+                                    withContext(Dispatchers.Main) {
+                                        Toast.makeText(this@RegisterActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                                    }
+                                    Log.e("RegisterActivity", "Error saat membuat profile", e)
+
+                                }
+
+
+
+                            } else {
+                                throw Exception("Sign-up failed, user ID not returned")
+                            }
+
+                            // Show success message
                             withContext(Dispatchers.Main) {
                                 Toast.makeText(this@RegisterActivity, "Registrasi berhasil", Toast.LENGTH_SHORT).show()
                                 finish()
@@ -68,7 +85,6 @@ class RegisterActivity : AppCompatActivity() {
                                 Toast.makeText(this@RegisterActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                             }
                             Log.e("RegisterActivity", "Error saat registrasi", e)
-
                         }
                     }
                 } else {
