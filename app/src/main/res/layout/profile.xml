@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFAED">
+
+    <!-- Tombol Kembali -->
+    <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Back button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+      />
+
+    <!-- Teks "Edit Profile" -->
+    <TextView
+        android:id="@+id/tv_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Edit Profile"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/btn_back"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Foto Profil -->
+
+    <!-- Tombol Ganti Foto -->
+    <ImageView
+        android:id="@+id/img_profile"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="24dp"
+
+        android:scaleType="centerCrop"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_edit_profile" />
+
+    <Button
+        android:id="@+id/btn_ganti_foto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#F8DD91"
+        android:text="Ganti foto"
+        android:textColor="#6F4741"
+        app:layout_constraintTop_toBottomOf="@id/img_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Input Nama, Email, dan Nomor Telepon -->
+
+    <!-- Tombol Simpan Data -->
+    <LinearLayout
+        android:id="@+id/input_fields"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_ganti_foto">
+
+        <!-- Input Full Name -->
+        <EditText
+            android:id="@+id/et_full_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_profile"
+            android:hint="Full name"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <!-- Input Email -->
+        <TextView
+            android:id="@+id/et_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_profile"
+            android:hint="Email"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <!-- Input Phone Number -->
+        <EditText
+            android:id="@+id/et_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/edittext_profile"
+            android:hint="Phone Number"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <!-- Tombol Logout -->
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#FEBF34"
+            android:text="Simpan Data"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/input_fields" />
+
+        <!-- Bottom Navigation -->
+
+        <Button
+            android:id="@+id/btn_logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:backgroundTint="#F8DD91"
+            android:text="Logout"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_save" />
+    </LinearLayout>
+
+
+
+
+<!--    <com.google.android.material.bottomnavigation.BottomNavigationView-->
+<!--        android:id="@+id/bottom_navigation"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#F8DD91"-->
+<!--        app:menu="@menu/bottom_nav_menu"-->
+<!--        app:itemIconTint="@color/black"-->
+<!--        app:itemTextColor="@color/black"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent" />-->
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
