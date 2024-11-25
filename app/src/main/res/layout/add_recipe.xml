@@ -1,6 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFAED"
     android:padding="16dp">
 
     <LinearLayout
@@ -14,7 +15,7 @@
             android:id="@+id/tvFull_Name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Hello, Eva"
+            android:text="Hello"
             android:textColor="#FEBF34"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -30,6 +31,7 @@
 
         <!-- Recipe Name Input -->
         <EditText
+            android:textColor="@color/black"
             android:id="@+id/etNamaMakanan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -40,6 +42,7 @@
         <!-- Servings Input -->
         <EditText
             android:id="@+id/etPorsi"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_border_orange"
@@ -50,6 +53,7 @@
         <!-- Cooking Duration Input -->
         <EditText
             android:id="@+id/etDurasiMasak"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_border_orange"
@@ -59,6 +63,7 @@
         <!-- Recipe Story Input -->
         <EditText
             android:id="@+id/etCerita"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_border_orange"
@@ -68,6 +73,7 @@
         <!-- Ingredients Input -->
         <EditText
             android:id="@+id/etBahanUtama"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edittext_border_orange"
@@ -77,6 +83,7 @@
         <!-- Steps Input -->
         <EditText
             android:id="@+id/etLangkahLangkah"
+            android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_marginBottom="8dp"
             android:layout_height="wrap_content"
