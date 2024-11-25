@@ -3,6 +3,7 @@ package com.example.serbaresep
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -83,7 +84,7 @@ class HomeActivity : AppCompatActivity() {
 
                     val tvFullName = findViewById<TextView>(R.id.tvProfileName)
                     ivProfile.load(profile.image)
-                    tvFullName.text = "Selamat Datang! ${profile.full_name}"
+                    tvFullName.text = "${profile.full_name}"
 
 
                 }catch(e:Exception){
@@ -101,8 +102,11 @@ class HomeActivity : AppCompatActivity() {
                 // Fetching data from Supabase
                 val recipeResult = supabase.postgrest
                     .from("recipes")
-                    .select(columns = Columns.list("id", "nama_makanan", "foto_makanan", "bahan_utama", "cerita_asal_resep", "durasi_masak", "langkah_langkah", "porsi"))
+                    .select(columns = Columns.ALL)
                     .decodeList<Recipe>()  // Decode query result into a list of Recipe
+
+                // Log the fetched data
+                Log.d("HomeActivity", "Fetched Recipes: $recipeResult")
 
                 // Update the recipe list on the main thread
                 withContext(Dispatchers.Main) {
