@@ -27,7 +27,10 @@ import kotlinx.serialization.json.Json
 import java.util.UUID
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.net.toFile
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.serbaresep.adapter.RecipeAdapter
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.postgrest.postgrest
 import io.github.jan.supabase.storage.storage
@@ -43,7 +46,21 @@ data class Profile(
     val user_id: String
 )
 
+
+@Serializable
+data class RecipeWrapper(
+    val recipes: Recipe
+)
+
+
+
+
+
+
 class ProfileActivity : AppCompatActivity() {
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var recipeAdapter: RecipeAdapter
+    private var recipeList: MutableList<Recipe> = mutableListOf()
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
@@ -56,6 +73,14 @@ class ProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile)
+        // Initialize RecyclerView with LinearLayoutManager
+        recyclerView = findViewById(R.id.recyclerViewRecipes) // Ganti 'recycler_view' dengan ID yang benar pada layout Anda
+
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        fetchRecipes()
+        recipeAdapter = RecipeAdapter(this, recipeList)
+        recyclerView.adapter = recipeAdapter
 
         val logoutBtn = findViewById<Button>(R.id.btn_logout)
         val changeImgBtn = findViewById<Button>(R.id.btn_ganti_foto)
@@ -203,6 +228,44 @@ class ProfileActivity : AppCompatActivity() {
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
+        }
+    }
+    private fun fetchRecipes() {
+        CoroutineScope(Dispatchers.IO).launch {
+
+            try {
+                // Fetching data from Supabase
+                val userId = supabase.auth.currentUserOrNull()?.id
+
+                val recipeResult = supabase.postgrest
+                    .from("favorite")
+                    .select(columns = Columns.raw("recipes(id,nama_makanan,porsi,durasi_masak,cerita_asal_resep,bahan_utama,langkah_langkah,foto_makanan)")) {
+                        filter {
+                            if (userId != null) {
+                                eq("user_id", userId)
+                            }
+                        }
+                    }.decodeList<RecipeWrapper>()
+
+
+
+                // Log the fetched data
+                Log.d("ProfileActivity", "Fetched Favorites Recipes: ${recipeResult}")
+
+                // Update the recipe list on the main thread
+                withContext(Dispatchers.Main) {
+                    recipeList.clear() // Mengosongkan daftar resep lama
+                    recipeList.addAll(recipeResult.map { it.recipes }) // Menambahkan resep favorit ke dalam daftar
+                    recipeAdapter.notifyDataSetChanged() // Memberi tahu adapter untuk memperbarui UI
+                }
+
+            } catch (e: Exception) {
+                // Handle errors if any exception occurs
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@ProfileActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+                Log.e("ProfileActivity", "Error fetching favorites: $e")
+            }
         }
     }
 
