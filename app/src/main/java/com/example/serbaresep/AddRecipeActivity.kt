@@ -206,14 +206,11 @@ class AddRecipeActivity : AppCompatActivity() {
             try {
                 val postgrest = supabase.postgrest.from("recipes") // Replace with your table name
                 val response = postgrest.insert(recipe)
-
-                withContext(Dispatchers.Main) {
-                    if (response.data.isNotEmpty()) {
-                        Toast.makeText(this@AddRecipeActivity, "Recipe saved successfully", Toast.LENGTH_SHORT).show()
-                    } else {
-                        Toast.makeText(this@AddRecipeActivity, "Failed to save recipe", Toast.LENGTH_SHORT).show()
-                    }
+                withContext(Dispatchers.Main){
+                    Toast.makeText(this@AddRecipeActivity, "Recipe saved successfully", Toast.LENGTH_SHORT).show()
                 }
+                startActivity(Intent(this@AddRecipeActivity, HomeActivity::class.java))
+                finish()
             } catch (e: Exception) {
                 withContext(Dispatchers.Main) {
                     Toast.makeText(this@AddRecipeActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
