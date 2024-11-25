@@ -2,6 +2,7 @@ package com.example.serbaresep.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.serbaresep.R
 import com.example.serbaresep.Recipe
 import com.example.serbaresep.RecipeDetailActivity
+import kotlin.math.log
 
 class RecipeAdapter(
     private val context: Context,
@@ -36,6 +38,7 @@ class RecipeAdapter(
 
             // Handle click to open detail activity
             itemView.setOnClickListener {
+                Log.e("RecipeAdapter", "Recipe ID: ${recipe.durasi_masak}")
                 val intent = Intent(context, RecipeDetailActivity::class.java).apply {
                     putExtra("recipe_id", recipe.id)
                     putExtra("recipe_name", recipe.nama_makanan)
